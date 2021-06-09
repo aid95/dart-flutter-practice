@@ -25,7 +25,7 @@ class MyCard extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.red[800],
       appBar: AppBar(
-        title: Text("DEVELOPER PROFILE"),
+        title: Text("MY PROFILE"),
         centerTitle: true,
         backgroundColor: Colors.red[700],
         elevation: 0.0,
@@ -98,7 +98,7 @@ class MyCard extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(30.0, 40.0, 0.0, 0.0),
+        padding: EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -109,35 +109,45 @@ class MyCard extends StatelessWidget {
               ),
             ),
             Center(
-              child: ElevatedButton(
+                child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                  child: Text("Hello"),
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Hi, I'm a programmer.",
-                          style: TextStyle(color: Colors.black)),
-                      action: SnackBarAction(
-                        label: "Undo",
-                        onPressed: () {
-                          Fluttertoast.showToast(
-                              msg: "This is Center Short Toast",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.TOP,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.teal[200],
-                              textColor: Colors.white,
-                              fontSize: 12.0);
-                        },
-                      ),
-                      backgroundColor: Colors.white,
-                      duration: Duration(milliseconds: 1000),
-                    ));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => SecondPage()));
                   },
-                  child: Text("Don't push")),
-            ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Hi, I'm a programmer.",
+                            style: TextStyle(color: Colors.black)),
+                        action: SnackBarAction(
+                          label: "Undo",
+                          onPressed: () {
+                            Fluttertoast.showToast(
+                                msg: "This is Center Short Toast",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.TOP,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.teal[200],
+                                textColor: Colors.white,
+                                fontSize: 12.0);
+                          },
+                        ),
+                        backgroundColor: Colors.white,
+                        duration: Duration(milliseconds: 1000),
+                      ));
+                    },
+                    child: Text("Don't push")),
+              ],
+            )),
             Divider(
               height: 60.0,
               color: Colors.white30,
               thickness: 0.5,
-              endIndent: 30.0,
             ),
             Text(
               "NAME",
@@ -231,5 +241,15 @@ class MyCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: Text('Second page')), body: Text("Hello"));
   }
 }
